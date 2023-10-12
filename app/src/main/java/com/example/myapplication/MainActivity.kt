@@ -2,12 +2,14 @@ package com.example.myapplication
 
 import android.content.Context
 import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.myapplication.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),SensorEventListener {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var sensorManager: SensorManager
@@ -27,5 +29,17 @@ class MainActivity : AppCompatActivity() {
         binding.gyroscopeX.text = x.toString()
         binding.gyroscopeY.text = y.toString()
         binding.gyroscopeZ.text = z.toString()
+    }
+
+    override fun onSensorChanged(p0: SensorEvent?) {
+        //Get gyroscope X,Y,Z
+        binding.gyroscopeX.text = p0!!.values[0].toString()
+        binding.gyroscopeY.text = p0!!.values[1].toString()
+        binding.gyroscopeZ.text = p0!!.values[2].toString()
+
+    }
+
+    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
+        TODO("Not yet implemented")
     }
 }
