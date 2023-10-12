@@ -13,4 +13,11 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
+    private fun init(x: Int,y: Int,z: Int){
+        binding.gyroscopeX.text = x.toString()
+        binding.gyroscopeY.text = y.toString()
+        binding.gyroscopeZ.text = z.toString()
+    }
 }
