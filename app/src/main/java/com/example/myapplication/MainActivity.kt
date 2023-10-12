@@ -24,7 +24,15 @@ class MainActivity : AppCompatActivity(),SensorEventListener {
         gyroSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
     }
 
+    override fun onResume() {
+        super.onResume()
+        sensorManager.registerListener(this,gyroSensor,SensorManager.SENSOR_DELAY_NORMAL)
+    }
 
+    override fun onPause() {
+        super.onPause()
+        sensorManager.unregisterListener(this)
+    }
     private fun init(x: Int,y: Int,z: Int){
         binding.gyroscopeX.text = x.toString()
         binding.gyroscopeY.text = y.toString()
